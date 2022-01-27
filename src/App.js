@@ -1,7 +1,10 @@
-import {Button} from "react-bootstrap";
+import BaseContainer from "./components/BaseContainer";
+import LessonsOverview from "./components/LessonsOverview";
 
 function App() {
- return <Button>Test</Button>
+    return <BaseContainer>
+        <LessonsOverview />
+    </BaseContainer>
 }
 
 export default App;
