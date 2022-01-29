@@ -3,7 +3,9 @@ import LessonsOverview from "./components/LessonsOverview";
 
 function App() {
     return <BaseContainer>
-        <LessonsOverview />
+        <div className="mt-3">
+            <LessonsOverview />
+        </div>
     </BaseContainer>
 }
 
