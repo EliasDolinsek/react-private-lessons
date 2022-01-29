@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+let nextId = 0
 const initialState = { upcomingLessons: [], doneLessons: [] }
 
 export const lessonsSlice = createSlice({
@@ -7,10 +8,28 @@ export const lessonsSlice = createSlice({
     initialState,
     reducers: {
         addLesson: (state, action) => {
-            state.upcomingLessons.push(action.payload)
-        }
+            state.upcomingLessons.push({id: nextId++, ...action.payload})
+        },
+        markLessonAsDone: (state, action) => {
+            const lessonIndex = state.upcomingLessons.indexOf(value => value.id === action.payload)
+            state.doneLessons.push(state.upcomingLessons.at(lessonIndex))
+            state.upcomingLessons.splice(lessonIndex, 1)
+        },
+        markLessonAsUpcoming: (state, action) => {
+            const lessonIndex = state.doneLessons.indexOf(value => value.id === action.payload)
+            state.upcomingLessons.push(state.doneLessons.at(lessonIndex))
+            state.doneLessons.splice(lessonIndex, 1)
+        },
+        deleteLesson: (state, action) => {
+            const id = action.payload
+            const upcomingLessonsIndex = state.upcomingLessons.indexOf(value => value.id === id)
+            const doneLessonsIndex = state.doneLessons.indexOf(value => value.id === id)
+
+            state.upcomingLessons.splice(upcomingLessonsIndex, 1)
+            state.doneLessons.splice(doneLessonsIndex, 1)
+        },
     }
 })
 
-export const { addLesson } = lessonsSlice.actions
+export const { addLesson, markLessonAsDone, markLessonAsUpcoming, deleteLesson } = lessonsSlice.actions
 export default lessonsSlice.reducer

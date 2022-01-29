@@ -5,7 +5,6 @@ import LessonsList from "./LessonsList";
 
 function LessonsOverview(){
     const lessons = useSelector((state) => state.lessons)
-    const dispatch = useDispatch()
 
     return <Container>
         <AddLessonInput />
@@ -15,7 +14,7 @@ function LessonsOverview(){
         </div>
         <h5 className="mt-4">Done - {lessons.doneLessons.length}</h5>
         <div className="mt-3">
-            <LessonsList lessons={lessons.doneLessons}/>
+            <LessonsList lessons={lessons.doneLessons} done/>
         </div>
     </Container>
 }
