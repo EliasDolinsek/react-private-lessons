@@ -1,17 +1,22 @@
 import {Container} from "react-bootstrap"
 import AddLessonInput from "./AddLessonInput";
 import {useDispatch, useSelector} from "react-redux";
-import {addLesson} from "../lessons/lessonsSlice";
+import LessonsList from "./LessonsList";
 
 function LessonsOverview(){
-    const lessons = useSelector((state) => state)
+    const lessons = useSelector((state) => state.lessons)
     const dispatch = useDispatch()
 
     return <Container>
-        <AddLessonInput onClick={() => dispatch(addLesson({title: "Test", field: "I don't know"}))}/>
-        <h5>Upcoming - 5</h5>
-        {JSON.stringify(lessons)}
-        <h5>Done - 7</h5>
+        <AddLessonInput />
+        <h5 className="mt-4">Upcoming - {lessons.upcomingLessons.length}</h5>
+        <div className="mt-3">
+            <LessonsList lessons={lessons.upcomingLessons}/>
+        </div>
+        <h5 className="mt-4">Done - {lessons.doneLessons.length}</h5>
+        <div className="mt-3">
+            <LessonsList lessons={lessons.doneLessons}/>
+        </div>
     </Container>
 }
 

@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {addLesson} from "../lessons/lessonsSlice";
 
-function AddLessonInput(props) {
+function AddLessonInput() {
     const [showInputs, setShowInputs] = useState(false);
 
     return <Card >
