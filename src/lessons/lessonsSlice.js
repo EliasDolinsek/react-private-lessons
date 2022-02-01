@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import {getDoneLessons, getUpcomingLessons} from "../data/localDataSource";
 
 let nextId = 0
-const initialState = { upcomingLessons: [], doneLessons: [] }
+const initialState = { upcomingLessons: getUpcomingLessons() ?? [], doneLessons: getDoneLessons() ?? [] }
 
 export const lessonsSlice = createSlice({
     name: 'lessons',
