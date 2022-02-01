@@ -28,8 +28,23 @@ export const lessonsSlice = createSlice({
             state.upcomingLessons.splice(upcomingLessonsIndex, 1)
             state.doneLessons.splice(doneLessonsIndex, 1)
         },
+        updateLesson: (state, action) => {
+            state.upcomingLessons = state.upcomingLessons.map(function (e) {
+                const lessonUpdate = action.payload
+                if(e.id === lessonUpdate.id){
+                    return lessonUpdate
+                } else {
+                    return e
+                }
+            })
+
+            const doneLessonsId = state.doneLessons.findIndex(value => value.id === action.payload.id)
+            if(doneLessonsId !== -1){
+                state.doneLessons[doneLessonsId] = state.payload
+            }
+        }
     }
 })
 
-export const { addLesson, markLessonAsDone, markLessonAsUpcoming, deleteLesson } = lessonsSlice.actions
+export const { addLesson, markLessonAsDone, markLessonAsUpcoming, deleteLesson, updateLesson } = lessonsSlice.actions
 export default lessonsSlice.reducer

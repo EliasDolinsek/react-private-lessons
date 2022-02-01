@@ -1,6 +1,6 @@
 import {Container} from "react-bootstrap"
 import AddLessonInput from "./AddLessonInput";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import LessonsList from "./LessonsList";
 
 function LessonsOverview(){

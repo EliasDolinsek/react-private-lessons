@@ -31,8 +31,9 @@ function NewLessonInput(props) {
     const dateRef = useRef()
     const timeRef = useRef()
 
-    function addNewLesson() {
+    function executeAddLesson() {
         const payload = {
+            id: props.id,
             subject: subjectRef.current.value,
             teacher: teacherRef.current.value,
             room: roomRef.current.value,
@@ -60,7 +61,7 @@ function NewLessonInput(props) {
             event.stopPropagation();
             setValidated(true);
         } else {
-            addNewLesson()
+            executeAddLesson()
             clearInputs()
 
             setValidated(false);
@@ -92,8 +93,8 @@ function NewLessonInput(props) {
             </Form.Group>
         </Row>
         <ButtonGroup>
-            <Button type="submit" variant="primary">Add Lesson</Button>
-            <Button onClick={props.onDone} variant="outline-secondary">Cancel</Button>
+            <Button type="submit" variant="primary">ADD</Button>
+            <Button onClick={props.onDone} variant="outline-secondary">CANCEL</Button>
         </ButtonGroup>
     </Form>
 }
