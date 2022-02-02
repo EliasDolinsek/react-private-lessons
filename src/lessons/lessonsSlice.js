@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {getDoneLessons, getUpcomingLessons} from "../data/localDataSource";
+import {getDoneLessons, getUpcomingLessons} from "../data/firebaseDataSource";
 
 let nextId = 0
 const initialState = { upcomingLessons: getUpcomingLessons() ?? [], doneLessons: getDoneLessons() ?? [] }
@@ -7,6 +7,7 @@ const initialState = { upcomingLessons: getUpcomingLessons() ?? [], doneLessons:
 export const lessonsSlice = createSlice({
     name: 'lessons',
     initialState,
+    getInitialState: () => {},
     reducers: {
         addLesson: (state, action) => {
             state.upcomingLessons.push({id: nextId++, ...action.payload})

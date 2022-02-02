@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import lessonsReducer  from "./lessons/lessonsSlice";
-import {setDoneLessons, setUpcomingLessons} from "./data/localDataSource";
+import {setDoneLessons, setUpcomingLessons} from "./data/firebaseDataSource";
 
 export const store = configureStore({
     reducer: {
