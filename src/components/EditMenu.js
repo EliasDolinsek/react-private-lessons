@@ -65,7 +65,7 @@ function EditMenu(props) {
             </Form.Group>
         </Row>
         <ButtonGroup>
-            <Button type="submit" variant="primary">EDIT</Button>
+            <Button type="submit" variant="primary">UPDATE</Button>
             <Button onClick={props.onDone} variant="outline-secondary">CANCEL</Button>
         </ButtonGroup>
     </Form>
