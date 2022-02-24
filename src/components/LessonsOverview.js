@@ -3,7 +3,7 @@ import AddLessonInput from "./AddLessonInput";
 import SignedOutContent from "./auth/SingedOutConent";
 import { useSelector } from "react-redux";
 import LessonsList from "./LessonsList";
-import { AUTH_LOADING_STATE, AUTH_SIGNED_IN_STATE, AUTH_SIGNED_OUT_STATE } from "../auth/authSlice";
+import { AUTH_SIGNED_IN_STATE, AUTH_SIGNED_OUT_STATE } from "../auth/authSlice";
 
 function LessonsOverview() {
     const authState = useSelector((state) => state.auth)
