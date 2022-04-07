@@ -1,13 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {getDoneLessons, getUpcomingLessons} from "../data/localDataSource";
+import {getDoneLessons, getUpcomingLessons} from "../data/remoteDataSource";
 
 let nextId = 0
-const initialState = { upcomingLessons: getUpcomingLessons() ?? [], doneLessons: getDoneLessons() ?? [] }
+const initialState = { upcomingLessons: [], doneLessons: [] }
 
 export const lessonsSlice = createSlice({
     name: 'lessons',
     initialState,
     reducers: {
+        fetchFromDataSource: (state) => {
+            getUpcomingLessons().then(upcomingLessons => {
+                state.upcomingLessons = upcomingLessons
+            })
+
+            getDoneLessons().then(doneLessons => {
+                state.doneLessons = doneLessons
+            })
+        },
         addLesson: (state, action) => {
             state.upcomingLessons.push({id: nextId++, ...action.payload})
         },
@@ -47,5 +56,5 @@ export const lessonsSlice = createSlice({
     }
 })
 
-export const { addLesson, markLessonAsDone, markLessonAsUpcoming, deleteLesson, updateLesson } = lessonsSlice.actions
+export const { fetchFromDataSource, addLesson, markLessonAsDone, markLessonAsUpcoming, deleteLesson, updateLesson } = lessonsSlice.actions
 export default lessonsSlice.reducer

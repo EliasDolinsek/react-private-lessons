@@ -1,10 +1,17 @@
 import {Container} from "react-bootstrap"
 import AddLessonInput from "./AddLessonInput";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import LessonsList from "./LessonsList";
+import { useEffect } from "react";
+import { fetchFromDataSource } from "../lessons/lessonsSlice";
 
 function LessonsOverview(){
     const lessons = useSelector((state) => state.lessons)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchFromDataSource())
+    }, [])
 
     return <Container>
         <AddLessonInput />
